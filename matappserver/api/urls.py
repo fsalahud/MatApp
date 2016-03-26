@@ -19,8 +19,9 @@ from . import views
 
 urlpatterns=[
     url(r'^helloWorld/$', views.helloWorld, name='helloWorld'),
-    url(r'^getartists/$', views.getArtists, name='getArtists')
-    # url(r'^img/(?P<id>\d+)/$', views.getImage, name='getImage'),
+    url(r'^allartists/$', views.allArtists, name='allArtists'),
+    url(r'^allartifacts/$', views.allArtifacts, name='allArtifacts'),
+    url(r'^getartifact/(?P<id>[-\w.]+)/$', views.getArtifact, name='getArtifact'),
     # url(r'^img/(?P<id>\w+)/getcomment/$', views.getComment, name='getComment'),
     # url(r'^img/(?P<id>\w+)/delimage/$', views.delImage, name='delImage'),
     # url(r'^img/(?P<id>\w+)/delcomment/$', views.delComment, name='delComment'),
