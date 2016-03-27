@@ -4,35 +4,13 @@ angular.module('starter.controllers', ['ngCordova'])
 
     var controller = this;
 
-    var data=[
-              {title:"Street Language",
-               artist:"Faraj Daham"},
-
-               {title:"Portrait of Inji Efflatoun",
-               artist:"Inji Efflatoun"},
-
-               {title:"The Girl of Port said",
-               artist:"Inji Efflatoun"}
-    ];
     controller.check;
 
-
-    controller.getData=function(){
-    $http.get('http://172.20.70.0:8000/api/helloWorld/')
-        .success(function(data){
-          controller.check=data;
-        })
-        .error(function(error){
-          controller.check="error";
-        });
-    }
-
-    // artService.getInfo(function(err,data){
-    //   console.log(data);
-    //   if (err) controller.check = err;
-    //   else controller.check=data;
-    // });
-
+    artService.getInfo(function(err,data){
+      console.log(data);
+      if (err) controller.check = err;
+      else controller.check=data;
+    });
 
 // ----------------------------------//
 
@@ -66,91 +44,115 @@ controller.stop=function(){
 })
 
 
-.controller('ScanCtrl', function($scope,$cordovaBarcodeScanner) {
+.controller('ScanCtrl', function($scope,$cordovaBarcodeScanner,artService) {
 
 
 
     var scanner = this;
+    
+    scanner.cur_artist;
+    scanner.cur_art;
+    scanner.cur_image;
 
-    scanner.data=[
-              {title:"Street Language",
-               artist:"Faraj Daham"},
-
-               {title:"Portrait of Inji Efflatoun",
-               artist:"Inji Efflatoun"},
-
-               {title:"The Girl of Port said",
-               artist:"Inji Efflatoun"}
-    ];
-    //controller.display="No info to display";
-    scanner.scannerID=null;
+    scanner.scannerID;
     scanner.id_num=null;
     scanner.painting="No artwork available";
     scanner.artist="No artist available";
 
+    scanner.art;
 
-  $scope.$on('$ionicView.enter', function() {
+    scanner.getArt=function(id){
+      artService.getArt(id,function(err,data){
+      console.log(data);
+      if (err) scanner.art = err;
+      else scanner.art=data;
+          console.log(scanner.art[0]);
+          console.log("art retrieved");
+    });
+    };
+
+
+    $scope.$on('$ionicView.enter', function() {
      // Code you want executed every time view is opened
     $cordovaBarcodeScanner.scan().then(function(barcodeData){
       alert(JSON.stringify(barcodeData));
       scanner.scannerID=barcodeData.text;
-      scanner.id_num=parseInt(barcodeData.text);
-      if (scanner.scannerID!==""){
-      scanner.painting=scanner.data[scanner.id_num].title;
-      scanner.artist=scanner.data[scanner.id_num].artist;
-      } else {
-        scanner.painting="No artwork available";
-        scanner.artist="No artist available";
-      }
-      console.log("format", barcodeData.format);
+      scanner.getArt(scanner.scannerID);
+      //scanner.getArt("MAT.2007.1.658");
+      // scanner.painting=scanner.data[scanner.id_num].title;
+      // scanner.artist=scanner.data[scanner.id_num].artist;
+      // } else {
+      //   scanner.painting="No artwork available";
+      //   scanner.artist="No artist available";
+      // }
+      console.log("scannerID", scannerID);
     }, function(error){
       console.log("An error occurred" + error);
     });
      console.log('Opened!')
   })
 
+    // scanner.data=[
+    //           {title:"Street Language",
+    //            artist:"Faraj Daham"},
+
+    //            {title:"Portrait of Inji Efflatoun",
+    //            artist:"Inji Efflatoun"},
+
+    //            {title:"The Girl of Port said",
+    //            artist:"Inji Efflatoun"}
+    // ];
+
+  // $scope.$on('$ionicView.enter', function() {
+  //    // Code you want executed every time view is opened
+  //   $cordovaBarcodeScanner.scan().then(function(barcodeData){
+  //     alert(JSON.stringify(barcodeData));
+  //     scanner.scannerID=barcodeData.text;
+  //     scanner.id_num=parseInt(barcodeData.text);
+  //     if (scanner.scannerID!==""){
+  //     scanner.painting=scanner.data[scanner.id_num].title;
+  //     scanner.artist=scanner.data[scanner.id_num].artist;
+  //     } else {
+  //       scanner.painting="No artwork available";
+  //       scanner.artist="No artist available";
+  //     }
+  //     console.log("format", barcodeData.format);
+  //   }, function(error){
+  //     console.log("An error occurred" + error);
+  //   });
+  //    console.log('Opened!')
+  // })
+
     scanner.scanBarcode=function(){
     console.log("clicked");
     $cordovaBarcodeScanner.scan().then(function(barcodeData){
       alert(JSON.stringify(barcodeData));
       scanner.scannerID=barcodeData.text;
-      scanner.id_num=parseInt(barcodeData.text);
-      if (scanner.scannerID!==""){
-      scanner.painting=scanner.data[scanner.id_num].title;
-      scanner.artist=scanner.data[scanner.id_num].artist;
-      } else {
-        scanner.painting="No artwork available";
-        scanner.artist="No artist available";
-      }
+      scanner.getArt(scanner.scannerID);
+      //scanner.getArt("MAT.2007.1.658");
       console.log("format", barcodeData.format);
     }, function(error){
       console.log("An error occurred" + error);
     });
   }
-})
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+    // artService.getArtist(function(err,data){
+    //   console.log(data);
+    //   if (err) scanner.cur_artist = err;
+    //   else scanner.cur_artist=data;
+    // });
 
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
-})
+    // artService.getArt(function(err,data){
+    //   console.log(data);
+    //   if (err) scanner.cur_art = err;
+    //   else scanner.cur_art=data;
+    // });
+
+    // artService.getImage(function(err,data){
+    //   console.log(data);
+    //   if (err) scanner.cur_image = err;
+    //   else scanner.cur_image=data;
+    // });
 
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
-
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
 });

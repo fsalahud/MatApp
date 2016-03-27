@@ -8,13 +8,12 @@
     Painting: {{scan.painting}}</br>
     Artist: {{scan.artist}}</br>
 
+    From Server
+    </br>
+    {{scan.art[0].fields.title}}
+    {{scan.art[0].fields.location}}
+
     <button class="button", ng-click="scan.scanBarcode()">Scan another code</button>
-
-
-<!--     Are they coming??
-    {{dash.id}}
-    dash.id_num
-    {{dash.display}} -->
 
   </ion-content>
 </ion-view>
