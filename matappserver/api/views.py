@@ -10,7 +10,7 @@ from django.core.urlresolvers import reverse
 import json
 import os
 
-from .models import Artist, Artifact
+from .models import Artist, Artifact, Multimedia
 
 # Create your views here.
 
@@ -32,4 +32,20 @@ def allArtifacts(request):
 def getArtifact(request,id):
     artifact=Artifact.objects.filter(pk=id)
     data = serializers.serialize('json', artifact)
+    return HttpResponse(data, content_type = "application/json")
+
+def getArtist(request,id):
+    artist=Artifact.objects.filter(pk=id).values('artist')
+    artist=Artist.objects.filter(id=artist)
+    data = serializers.serialize('json', artist)
+    return HttpResponse(data, content_type = "application/json")
+
+# def getImage(request,id):
+#     img = Multimedia.objects.get(artifact_id=id)
+#     return HttpResponse(img.image.read(), content_type=img.mimeType)
+
+
+def getImage(request,id):
+    img = Multimedia.objects.filter(artifact_id=id)
+    data = serializers.serialize('json', img)
     return HttpResponse(data, content_type = "application/json")
