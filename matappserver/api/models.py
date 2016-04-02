@@ -31,3 +31,9 @@ class Multimedia(models.Model):
 	artifact = models.ForeignKey(Artifact, on_delete=models.CASCADE)
 	image = models.ImageField(upload_to='media')
 	mimeType = models.CharField(max_length=20)
+
+class AudioFile(models.Model):
+	artifact = models.ForeignKey(Artifact, on_delete=models.CASCADE)
+	audio = models.FileField(upload_to='media')
+	mimeType = models.CharField(max_length=20)
+

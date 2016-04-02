@@ -24,6 +24,7 @@ urlpatterns=[
     url(r'^getartifact/(?P<id>[-\w.]+)/$', views.getArtifact, name='getArtifact'),
     url(r'^getartist/(?P<id>[-\w.]+)/$', views.getArtist, name='getArtist'),
     url(r'^getimage/(?P<id>[-\w.]+)/$', views.getImage, name='getImage'),
+    url(r'^getaudio/(?P<id>[-\w.]+)/$', views.getAudio, name='getAudio'),
     # url(r'^img/(?P<id>\w+)/getcomment/$', views.getComment, name='getComment'),
     # url(r'^img/(?P<id>\w+)/delimage/$', views.delImage, name='delImage'),
     # url(r'^img/(?P<id>\w+)/delcomment/$', views.delComment, name='delComment'),
