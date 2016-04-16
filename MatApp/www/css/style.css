@@ -1,1 +1,300 @@
 /* Empty. Add your own CSS if you like */
+
+/* Empty. Add your own CSS if you like */
+
+/* Scanner view */
+.artWork{
+ height: 250px;
+ width: 250px;
+}
+
+.artWork img{
+  height: 250px;
+  width: auto;
+}
+
+.audioButton{
+  float: right;
+}
+
+#artist{
+  font-size: 120%;
+  font-family: helvetica;
+  font-weight: bold;
+}
+
+#title{
+  font-size: 110%;
+  font-family: helvetica;
+}
+
+#text{
+  font-size: 90%;
+  font-family: helvetica;
+}
+
+#nation{
+  font-size: 110%;
+  font-family: helvetica;
+}
+
+.branding1{
+  width: 400px;
+  height: 650px;
+}
+
+.branding2 {
+  bottom: 600px;
+  position: relative;
+  width: 70%;
+ float:left;
+ left:60px;
+}
+
+.explore1{
+  float: right;
+  bottom: 500px;
+  position: relative;
+  right:20%;
+}
+
+.about1{
+  float: right;
+  bottom: 450px;
+  position: relative;
+  right:25%;
+
+}
+
+.explore1 img{
+  height:60px;
+}
+
+.about1 img{
+  height:50px;
+}
+
+.bar-dark, .tabs-dark>.tabs {
+  background-color: black !important;
+  border-color:  black;
+}
+
+.audio{
+  margin-top: 250px;
+  margin-left: 100px;
+}
+
+.guide {
+  margin-left: 70px;
+  margin-top: 10px;
+
+}
+
+.artInfo{
+  margin-left: 70px;
+  margin-top: 30px;
+}
+
+.guide img{
+  border: solid black 2px;
+}
+
+.title{
+  margin-left: 70px;
+  margin-top: 50px;
+}
+
+.textButt{
+  margin-left: 70px;
+}
+
+.backButt{
+  margin-left: 10px;
+  margin-top: -375px;
+}
+
+.audioButt{
+  float: right;
+  margin-right: 60px;
+  margin-top: -32px;
+}
+
+.tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
+    color: #CC00CC;
+}
+
+
+.shake1{
+  text-align: center;
+  margin-top: 330px;
+  color: #CC00CC;
+}
+
+#quote{
+  font-size: 90%;
+  font-family: helvetica;
+  font-weight: bold;
+}
+#person{
+  font-size: 75%;
+  font-family: helvetica;
+  margin-top: -3px;
+}
+#place{
+  font-size: 75%;
+  font-family: helvetica;
+  margin-top: -12px;
+  font-style: italic;
+}
+
+
+.branding img{
+ width: 70%;
+ margin-left: 60px;
+}
+
+.scan{
+  margin-top: -20px;
+}
+
+.scan img{
+  width: 100px;
+}
+
+.scan p{
+  padding: 10px;
+  color: white;
+  background-color: black;
+  font-family: helvetica;
+  font-size: 85%;
+}
+
+
+.bar-dark, .tabs-dark>.tabs {
+  background-color: black !important;
+  border-color:  black;
+}
+
+.audio{
+	margin-top: 250px;
+	margin-left: 100px;
+}
+
+.guide {
+  margin-left: 70px;
+  margin-top: 10px;
+
+}
+
+.artInfo{
+  margin-left: 70px;
+  margin-top: 30px;
+}
+
+.guide img{
+  border: solid black 2px;
+}
+
+.title{
+  margin-left: 70px;
+  margin-top: 50px;
+}
+
+.textButt{
+  margin-left: 70px;
+}
+
+.backButt{
+  margin-left: 10px;
+  margin-top: -375px;
+}
+
+.audioButt{
+  float: right;
+  margin-right: 60px;
+  margin-top: -32px;
+}
+
+.tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
+    color: #CC00CC;
+}
+
+
+
+.shake1{
+  text-align: center;
+  margin-top: 330px;
+  color: #CC00CC;
+}
+
+#quote{
+  font-size: 90%;
+  font-family: helvetica;
+  font-weight: bold;
+}
+#person{
+  font-size: 75%;
+  font-family: helvetica;
+  margin-top: -3px;
+}
+#place{
+  font-size: 75%;
+  font-family: helvetica;
+  margin-top: -12px;
+  font-style: italic;
+}
+
+.info{
+  margin-top: 50px;
+
+}
+
+.info1{
+  background-color: black;
+}
+
+#number{
+  text-align: center;
+  font-family: helvetica;
+  font-size: 500%;
+  color: #CC00CC;
+}
+
+#art{
+  text-align: center;
+  font-family: helvetica;
+  font-size: 100%;
+  color: white;
+  font-weight: bold;
+}
+#mathaf{
+  text-align: center;
+  font-family: helvetica;
+  font-size: 90%;
+  color: white;
+
+}
+
+
+/*--- About Page ----*/
+
+.mathafIntro{
+  font-size: 75%;
+  font-family: helvetica;
+  font-weight: bold;
+  color: white;
+  background-color: black;
+  padding: 15px;
+  font-style: italic;
+}
+
+.mathafBackground{
+  font-size: 70%;
+  font-family: helvetica;
+  padding: 15px;
+  margin-top: -20px;
+
+}
+
+
+

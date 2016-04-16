@@ -3,156 +3,149 @@ angular.module('starter.controllers', ['ngCordova'])
 .controller('DashCtrl', function($scope,$cordovaBarcodeScanner, artService, $http, $ionicLoading, $cordovaMedia) {
 
     var controller = this;
-
-    controller.check;
-
-    artService.getInfo(function(err,data){
-      console.log(data);
-      if (err) controller.check = err;
-      else controller.check=data;
-    });
-
-// ----------------------------------//
-
-controller.media;
-
-controller.play=function(src){
-  controller.media= $cordovaMedia.newMedia(src, null,null,mediaStatusCallback);
-  controller.media.play();
-}
-
-controller.pause=function(){
-  if (controller.media){
-    media.pause();
-  }
-}
-
-controller.stop=function(){
-  if (controller.media){
-    media.stop();
-  }
-}
-
-  var mediaStatusCallback=function(status){
-    if (status==1){
-      $ionicLoading.show({template: "Loading"});
-    } else{
-      $ionicLoading.hide();
-    };
-  }
-
 })
 
-
-.controller('ScanCtrl', function($scope,$cordovaBarcodeScanner,artService) {
-
-
+.controller('ScanCtrl', function($scope,$cordovaBarcodeScanner,artService, $cordovaMedia, $ionicLoading) {
 
     var scanner = this;
-    
-    scanner.cur_artist;
-    scanner.cur_art;
-    scanner.cur_image;
-
     scanner.scannerID;
-    scanner.id_num=null;
-    scanner.painting="No artwork available";
-    scanner.artist="No artist available";
-
     scanner.art;
+    scanner.artist;
+    scanner.pre_img="https://matappserver.herokuapp.com/uploads/"
+    scanner.image;
+    scanner.audio;
+    scanner.show=false;
+    scanner.playing=false;
+    scanner.audio_url;
+    scanner.views;
+    scanner.cancel=false;
+    scanner.loading=true;
+    scanner.empty=true;
 
     scanner.getArt=function(id){
       artService.getArt(id,function(err,data){
       console.log(data);
       if (err) scanner.art = err;
       else scanner.art=data;
-          console.log(scanner.art[0]);
+          // console.log(scanner.art[0]);
           console.log("art retrieved");
     });
     };
 
+    scanner.getArtist=function(id){
+      artService.getArtist(id,function(err,data){
+      console.log(data);
+      if (err) scanner.artist = err;
+      else scanner.artist=data;
+          // console.log(scanner.artist[0]);
+          console.log("art retrieved");
+    });
+    };
+
+    scanner.getImage=function(id){
+      console.log("image??")
+      artService.getImage(id,function(err,data){
+      // console.log("image",data);
+      if (err) scanner.image = err;
+      else scanner.image=data;
+          // console.log(scanner.image);
+          console.log("image retrieved");
+    });
+    };
+
+    scanner.getAudio=function(id){
+      console.log("image??")
+      artService.getAudio(id,function(err,data){
+      console.log("audio",data);
+      if (err) scanner.audio = err;
+      else scanner.audio=data;
+           scanner.audio_url="https://matappserver.herokuapp.com/uploads/"+scanner.audio[0].fields.audio;
+          console.log(scanner.audio_url);
+          console.log("audio retrieved");
+          // console.log(scanner.audio_url);
+    });
+    };
+
+      scanner.upview = function(id){
+      artService.upview(id,function(err,data){
+          if (err) {console.log("error");}
+          else {scanner.views=data;
+               console.log("post views");}
+      });
+      };
+
 
     $scope.$on('$ionicView.enter', function() {
-     // Code you want executed every time view is opened
+    alert("Scan a QR code on the label to discover more aboth the artifact")
     $cordovaBarcodeScanner.scan().then(function(barcodeData){
       alert(JSON.stringify(barcodeData));
-      scanner.scannerID=barcodeData.text;
-      scanner.getArt(scanner.scannerID);
-      //scanner.getArt("MAT.2007.1.658");
-      // scanner.painting=scanner.data[scanner.id_num].title;
-      // scanner.artist=scanner.data[scanner.id_num].artist;
-      // } else {
-      //   scanner.painting="No artwork available";
-      //   scanner.artist="No artist available";
-      // }
-      console.log("scannerID", scannerID);
+      if (barcodeData.cancelled===0){
+        scanner.empty=false;
+        scanner.scannerID=barcodeData.text;
+        scanner.getArt(scanner.scannerID);
+        scanner.getArtist(scanner.scannerID);
+        scanner.getImage(scanner.scannerID);
+        scanner.getAudio(scanner.scannerID);
+        scanner.upview(scanner.scannerID);
+        console.log("trial",scannerID.getArt);
+      }
+      // else {scanner.empty=true
+      //       alert("Please scan again!")};
     }, function(error){
       console.log("An error occurred" + error);
     });
      console.log('Opened!')
   })
 
-    // scanner.data=[
-    //           {title:"Street Language",
-    //            artist:"Faraj Daham"},
-
-    //            {title:"Portrait of Inji Efflatoun",
-    //            artist:"Inji Efflatoun"},
-
-    //            {title:"The Girl of Port said",
-    //            artist:"Inji Efflatoun"}
-    // ];
-
-  // $scope.$on('$ionicView.enter', function() {
-  //    // Code you want executed every time view is opened
-  //   $cordovaBarcodeScanner.scan().then(function(barcodeData){
-  //     alert(JSON.stringify(barcodeData));
-  //     scanner.scannerID=barcodeData.text;
-  //     scanner.id_num=parseInt(barcodeData.text);
-  //     if (scanner.scannerID!==""){
-  //     scanner.painting=scanner.data[scanner.id_num].title;
-  //     scanner.artist=scanner.data[scanner.id_num].artist;
-  //     } else {
-  //       scanner.painting="No artwork available";
-  //       scanner.artist="No artist available";
-  //     }
-  //     console.log("format", barcodeData.format);
-  //   }, function(error){
-  //     console.log("An error occurred" + error);
-  //   });
-  //    console.log('Opened!')
-  // })
-
     scanner.scanBarcode=function(){
     console.log("clicked");
+    scanner.cancel=false;
     $cordovaBarcodeScanner.scan().then(function(barcodeData){
       alert(JSON.stringify(barcodeData));
-      scanner.scannerID=barcodeData.text;
-      scanner.getArt(scanner.scannerID);
-      //scanner.getArt("MAT.2007.1.658");
-      console.log("format", barcodeData.format);
+      if (barcodeData.cancelled===0){
+        scanner.empty=false;
+        scanner.scannerID=barcodeData.text;
+        scanner.getArt(scanner.scannerID);
+        scanner.getArtist(scanner.scannerID);
+        scanner.getImage(scanner.scannerID);
+        scanner.getAudio(scanner.scannerID);
+        scanner.upview(scanner.scannerID);
+        console.log("trial2",scannerID.getArt);
+      }
+      // else {scanner.empty=true
+      //       alert("Please scan again!")};
     }, function(error){
       console.log("An error occurred" + error);
     });
   }
 
-    // artService.getArtist(function(err,data){
-    //   console.log(data);
-    //   if (err) scanner.cur_artist = err;
-    //   else scanner.cur_artist=data;
-    // });
+  // ----------------------------------//
 
-    // artService.getArt(function(err,data){
-    //   console.log(data);
-    //   if (err) scanner.cur_art = err;
-    //   else scanner.cur_art=data;
-    // });
+  scanner.media;
 
-    // artService.getImage(function(err,data){
-    //   console.log(data);
-    //   if (err) scanner.cur_image = err;
-    //   else scanner.cur_image=data;
-    // });
+  scanner.play=function(){
+    console.log("audio_url", scanner.audio_url);
+    scanner.media= $cordovaMedia.newMedia(scanner.audio_url)
+    scanner.media.play();
+    scanner.playing=true;
+  }
+
+  // scanner.pause=function(){
+  //     scanner.media.pause();
+  // }
+
+  scanner.stop=function(){
+      scanner.media.stop();
+      scanner.playing=false;
+}
+
+    // var mediaStatusCallback = function(status) {
+    //     if(status == 1) {
+    //         $ionicLoading.show({template: 'Loading...'});
+    //     } else {
+    //         $ionicLoading.hide();
+    //     }
+    // }
 
 
 });

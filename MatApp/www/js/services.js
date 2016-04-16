@@ -3,7 +3,7 @@ angular.module('starter.services', [])
     var service=this;
 
     service.getInfo = function(callback){
-      $http.get('http://172.20.70.0:8000/api/helloWorld/')
+      $http.get('https://matappserver.herokuapp.com/api/helloWorld/')
         .success(function(data,status){
           callback(null, data);
         })
@@ -13,7 +13,7 @@ angular.module('starter.services', [])
     };
 
     service.getArtist = function(id,callback){
-      $http.get('http://172.20.70.0:8000/api/' + id + 'getartist/')
+      $http.get('https://matappserver.herokuapp.com/api/getartist/'+id)
         .success(function(data,status){
           callback(null, data);
         })
@@ -23,7 +23,7 @@ angular.module('starter.services', [])
     };
 
     service.getArt = function(id,callback){
-      $http.get('http://172.20.70.0:8000/api/getartifact/' + id )
+      $http.get('https://matappserver.herokuapp.com/api/getartifact/' + id )
         .success(function(data,status){
           callback(null, data);
         })
@@ -32,8 +32,8 @@ angular.module('starter.services', [])
         });
     };
 
-    service.getImage = function(callback){
-      $http.get('http://172.20.70.0:8000/api/' + id + 'getimage/')
+    service.getImage = function(id, callback){
+      $http.get('https://matappserver.herokuapp.com/api/getimage/' + id)
         .success(function(data,status){
           callback(null, data);
         })
@@ -41,4 +41,24 @@ angular.module('starter.services', [])
           callback(error,null);
         });
     };
+
+    service.getAudio = function(id, callback){
+      $http.get('https://matappserver.herokuapp.com/api/getaudio/' + id)
+        .success(function(data,status){
+          callback(null, data);
+        })
+        .error(function(error, status){
+          callback(error,null);
+        });
+    };
+
+      service.upview = function(id,callback){
+        $http.get('https://matappserver.herokuapp.com/api/upview/' + id)
+        .success(function(data,status){
+          callback(null, data);
+        })
+        .error(function(error, status){
+          callback(error,null);
+        });
+      };
   });

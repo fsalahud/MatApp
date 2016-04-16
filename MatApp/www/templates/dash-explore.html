@@ -1,0 +1,53 @@
+<ion-view view-name="tab-dash" view-title="{{scan.art[0].fields.title}}">
+    <ion-nav-bar class="bar-stable">
+       <ion-nav-buttons side="left">
+            <a class="button button-icon icon ion-home" href="#/dash"></a>
+
+        </ion-nav-buttons>
+       <ion-nav-buttons side="right">
+            <a class="button button-icon icon ion-ios-camera" ng-click="scan.scanBarcode()"></a>
+
+        </ion-nav-buttons>
+    </ion-nav-bar>
+  <ion-content class="padding">
+  <div ng-hide="scan.empty">
+    <div class="artWork">
+        <img ng-src="https://matappserver.herokuapp.com/uploads/{{scan.image[0].fields.image}}"/>
+    </div>
+  </br>
+
+        <div class="audioButton">
+    <a class="button button-icon icon ion-headphone" ng-click="scan.play()" ng-hide="scan.playing"></a>
+    <a class="button button-icon icon ion-stop" ng-click="scan.stop()" ng-show="scan.playing"></a>
+    </div>
+
+    <div class="artTitle">
+      <span id="artist">
+        {{scan.artist[0].fields.firstName}}&nbsp{{scan.artist[0].fields.lastName}}
+      </span>
+    </br>
+      
+      <span id="title">
+        <span style="font-style:italic">{{scan.art[0].fields.title}}</span>  ,{{scan.art[0].fields.year}}
+      </span>
+    </br>
+
+      <span id="nation">
+        {{scan.artist[0].fields.nationality}} 
+      </span> 
+    </br>  
+
+      {{scan.art[0].fields.views}} user views
+      <hr>  
+
+      <span id="text">
+        {{scan.art[0].fields.description}}
+      </span>
+
+    </div>
+</div>
+    
+  </ion-content>
+</ion-view>
+
+
