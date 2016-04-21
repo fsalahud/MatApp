@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="matapp">
+<head>
+    <title>Mathaf App</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <!--css-->
+    <link rel="stylesheet" type="text/css" href="/static/bower_components/bootstrap/dist/css/bootstrap.css">
+     <link href="/static/style/animate.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- lib -->
+    <script src="/static/bower_components/angular/angular.min.js"></script>
+    <script src="/static/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="/static/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- app -->
+    <script src="/static/app/matapp.js"></script>
+    <script src="/static/app/service/matappService.js"></script>
+    <script src="/static/app/ui-bootstrap-tpls.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js"></script>
+    
+
+
+</head>
+<body ng-controller="matappController as main">
+
+
+<nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                        
+              </button>
+                <a href="/#/" class="navbar-brand"> Mathaf App</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav navbar-right">
+              
+            
+            
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        
+
+        <div ng-view></div>
+
+</body> 
+</html>
