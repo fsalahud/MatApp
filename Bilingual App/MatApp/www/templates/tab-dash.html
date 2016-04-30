@@ -1,0 +1,35 @@
+<ion-view>
+  <ion-content>
+  
+
+        <div class="branding1">
+      <img src="img/main_background.jpg" alt="mathaf background">
+    </div>
+
+    <div class="branding2">
+      <img id="logo_image" src="img/Mathaf-logo.png" alt="mathaf logo">
+    </div>
+
+    <div class="explore1 animated slideInLeft">
+      <a href="#/tab/dash-explore"><img src='{{ "mathaf_exploreimg" | translate }}' alt="mathaf explore"></a>
+    </div>
+
+    <div class="about1 animated slideInRight">
+      <a href="#/tab/dash-about"><img src='{{ "mathaf_aboutimg" | translate }}' alt="mathaf about"></a>
+    </div>
+
+          <p class="english" ng-click='changeLanguage("en")'>
+         <img src="img/en.png" alt="mathaf english">
+       </p>
+       <p class="arabic" ng-click='changeLanguage("ar")'>
+         <img src="img/ar.png" alt="mathaf arabic">
+       </p>
+
+<!--             <p class="languageButtons">
+          <button ng-click='changeLanguage("ar")'>{{ "mathaf_arabic_langButt " | translate }}</button><br/>
+          <button ng-click='changeLanguage("en")'>{{ "mathaf_english_langButt " | translate }}</button>
+        </p>
+ -->
+
+  </ion-content>
+</ion-view>

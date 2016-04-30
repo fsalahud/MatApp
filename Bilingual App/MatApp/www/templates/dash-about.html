@@ -1,0 +1,46 @@
+<ion-view view-name="tab-dash" view-title="About Mathaf">
+    <ion-nav-bar class="bar-stable">
+       <ion-nav-buttons side="left">
+            <a class="button button-icon icon ion-home" href="#/dash"></a>
+
+        </ion-nav-buttons>
+    </ion-nav-bar>
+  <ion-content class="padding">
+
+<div class="aboutImage">
+      <img src="img/aboutMathaf.png" alt="art piece">
+    </div>
+    <div class="homePage">
+      <p class="mathafIntro">
+      {{ "mathaf_intro" | translate }}
+    </p>
+
+    <p class="mathafBackground">
+      {{ "mathaf_background" | translate }} <br>
+
+      {{ "mathaf_background2" | translate }}
+    </p>
+
+
+  </div>
+  <hr>
+
+  <div class="teamInfo">
+    <p class="appV"> {{ "mathaf_version" | translate }} </p>
+    <p class="appTeam"> {{ "mathaf_developers" | translate }} </p>
+
+    <div class="teamNames">
+      <ul style="list-style-type:circle">
+          <li>{{ "farjana" | translate }}</li>
+          <li>{{ "haneen" | translate }}</li>
+          <li>{{ "reem" | translate }}</li>
+          <li>{{ "hayyan" | translate }}</li>
+      </ul>
+    </div>
+
+    <div class="about_logo">
+    <img src="img/qm-qf-logo.png" alt="logo">
+  </div>
+    
+  </ion-content>
+</ion-view>
